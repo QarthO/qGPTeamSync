@@ -1,0 +1,8 @@
+name: qGPTrust
+version: '${project.version}'
+main: gg.quartzdev.qgptrust.qGPTrust
+prefix: qGPTrust
+api-version: 1.19
+depend: [GriefPrevention, BetterTeams]
+authors: [QarthO]
+description: GriefPrevention add-on to trust a player to all current AND future claims.
