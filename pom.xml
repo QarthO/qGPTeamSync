@@ -9,7 +9,7 @@
     <version>1.0-alpha</version>
     <packaging>jar</packaging>
 
-    <name>qGPTrust</name>
+    <name>qGPTeamSync</name>
 
     <properties>
         <java.version>1.8</java.version>
