@@ -1,6 +1,6 @@
-name: qGPTrust
+name: '${project.artifactId}'
 version: '${project.version}'
-main: gg.quartzdev.qgptrust.qGPTrust
+main: gg.quartzdev.qgptrust.qGPTeamSync
 authors: [QarthO]
 website: https://quartzdev.gg/
 description: GriefPrevention addon - syncs your claims/trusts with BetterTeams
@@ -10,4 +10,4 @@ dependencies:
     required: true
   - name: BetterTeams
     required: true
-prefix: qGPTrust
+prefix: '${project.artifactId}'

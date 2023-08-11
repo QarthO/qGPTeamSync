@@ -1,7 +1,7 @@
-name: qGPTrust
+name: '${project.artifactId}'
 version: '${project.version}'
-main: gg.quartzdev.qgptrust.qGPTrust
-prefix: qGPTrust
+main: gg.quartzdev.qgptrust.qGPTeamSync
+prefix: '${project.artifactId}'
 api-version: 1.19
 depend: [GriefPrevention, BetterTeams]
 authors: [QarthO]
