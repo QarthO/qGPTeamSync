@@ -1,6 +1,6 @@
 name: '${project.artifactId}'
 version: '${project.version}'
-main: gg.quartzdev.qgptrust.qGPTeamSync
+main: gg.quartzdev.qgpteamsync.qGPTeamSync
 prefix: '${project.artifactId}'
 api-version: 1.19
 depend: [GriefPrevention, BetterTeams]

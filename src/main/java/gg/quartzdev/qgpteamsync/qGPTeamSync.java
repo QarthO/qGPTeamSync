@@ -1,12 +1,12 @@
-package gg.quartzdev.qgptrust;
+package gg.quartzdev.qgpteamsync;
 
-import gg.quartzdev.qgptrust.listeners.CreateClaim;
-import gg.quartzdev.qgptrust.listeners.betterteams.*;
+import gg.quartzdev.qgpteamsync.listeners.CreateClaim;
+import gg.quartzdev.qgpteamsync.listeners.betterteams.*;
 import me.ryanhamshire.GriefPrevention.Claim;
 import me.ryanhamshire.GriefPrevention.ClaimPermission;
 import me.ryanhamshire.GriefPrevention.DataStore;
 import org.bukkit.plugin.java.JavaPlugin;
-import gg.quartzdev.qgptrust.metrics.Metrics;
+import gg.quartzdev.qgpteamsync.metrics.Metrics;
 
 public final class qGPTeamSync extends JavaPlugin {
 

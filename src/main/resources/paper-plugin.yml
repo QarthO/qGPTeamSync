@@ -1,6 +1,6 @@
 name: '${project.artifactId}'
 version: '${project.version}'
-main: gg.quartzdev.qgptrust.qGPTeamSync
+main: gg.quartzdev.qgpteamsync.qGPTeamSync
 authors: [QarthO]
 website: https://quartzdev.gg/
 description: GriefPrevention addon - syncs your claims/trusts with BetterTeams

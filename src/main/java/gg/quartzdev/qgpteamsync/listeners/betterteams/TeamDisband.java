@@ -1,4 +1,4 @@
-package gg.quartzdev.qgptrust.listeners.betterteams;
+package gg.quartzdev.qgpteamsync.listeners.betterteams;
 
 import com.booksaw.betterTeams.Team;
 import com.booksaw.betterTeams.TeamPlayer;
@@ -6,10 +6,9 @@ import com.booksaw.betterTeams.customEvents.DisbandTeamEvent;
 import me.ryanhamshire.GriefPrevention.Claim;
 import me.ryanhamshire.GriefPrevention.DataStore;
 import me.ryanhamshire.GriefPrevention.GriefPrevention;
-import org.bukkit.OfflinePlayer;
-import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import gg.quartzdev.qgpteamsync.util.Util;
 
 import java.util.List;
 import java.util.UUID;
@@ -21,6 +20,9 @@ public class TeamDisband implements Listener {
     public void onTeamDisband(DisbandTeamEvent event){
 //        gets the team
         Team team = event.getTeam();
+        String teamName = team.getName();
+
+        Util.log("Team <blue>" + teamName + "<reset> disbanded");
 //        gets all the members in the team
         List<TeamPlayer> teamMembers = team.getStorage().getPlayerList();
 //        gets GriefPrevention data

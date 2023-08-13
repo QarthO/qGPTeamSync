@@ -1,15 +1,13 @@
-package gg.quartzdev.qgptrust.listeners.betterteams;
+package gg.quartzdev.qgpteamsync.listeners.betterteams;
 
 import com.booksaw.betterTeams.PlayerRank;
 import com.booksaw.betterTeams.Team;
 import com.booksaw.betterTeams.TeamPlayer;
-import com.booksaw.betterTeams.customEvents.DemotePlayerEvent;
+import com.booksaw.betterTeams.customEvents.PromotePlayerEvent;
 import me.ryanhamshire.GriefPrevention.Claim;
 import me.ryanhamshire.GriefPrevention.ClaimPermission;
 import me.ryanhamshire.GriefPrevention.DataStore;
 import me.ryanhamshire.GriefPrevention.GriefPrevention;
-import org.bukkit.OfflinePlayer;
-import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 
@@ -17,11 +15,13 @@ import java.util.List;
 import java.util.UUID;
 import java.util.Vector;
 
-public class TeamDemotePlayer implements Listener {
+public class TeamPromotePlayer implements Listener {
 
     @EventHandler
-    public void onPlayerDemoted(DemotePlayerEvent event){
-//        gets the team the demoted player is in
+    public void onPlayerPromoted(PromotePlayerEvent event){
+//        Will be removed after adding config
+        if(event.getCurrentRank().equals(PlayerRank.ADMIN) && event.getNewRank().equals(PlayerRank.OWNER)) return;
+//        gets the team the promoted player is in
         Team team = event.getTeam();
 //        gets all the team members
         List<TeamPlayer> teamMembers = team.getStorage().getPlayerList();
@@ -34,7 +34,8 @@ public class TeamDemotePlayer implements Listener {
 
 //            TODO: use config to dictate what playerrank is what gp permission level,
 //            ie: getrankfromconfig(event.getnewrank()) returns a claimpermission
-
+//
+//                  trustPlayer(claim, teamMemberID.toString(), ClaimPermission.Manage, gpDataStore);
             for(Claim claim : claims){
                 if(event.getNewRank().equals(PlayerRank.OWNER)){
                     trustPlayer(claim, teamMemberID.toString(), ClaimPermission.Manage, gpDataStore);
@@ -48,7 +49,6 @@ public class TeamDemotePlayer implements Listener {
             }
         }
     }
-
     private void trustPlayer(Claim claim, String playerID, ClaimPermission permission, DataStore dataStore){
         claim.dropPermission(playerID);
         claim.setPermission(playerID, permission);

@@ -1,4 +1,4 @@
-package gg.quartzdev.qgptrust.listeners.betterteams;
+package gg.quartzdev.qgpteamsync.listeners.betterteams;
 
 import com.booksaw.betterTeams.Team;
 import com.booksaw.betterTeams.TeamPlayer;

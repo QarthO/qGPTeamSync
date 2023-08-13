@@ -1,9 +1,8 @@
-package gg.quartzdev.qgptrust.listeners;
+package gg.quartzdev.qgpteamsync.listeners;
 
 import com.booksaw.betterTeams.PlayerRank;
 import com.booksaw.betterTeams.Team;
 import com.booksaw.betterTeams.TeamPlayer;
-import com.booksaw.betterTeams.database.BetterTeamsDatabase;
 import me.ryanhamshire.GriefPrevention.*;
 import me.ryanhamshire.GriefPrevention.events.ClaimCreatedEvent;
 import org.bukkit.command.CommandSender;
@@ -11,7 +10,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class CreateClaim implements Listener {
