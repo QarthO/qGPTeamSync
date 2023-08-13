@@ -6,6 +6,8 @@ import com.booksaw.betterTeams.customEvents.DisbandTeamEvent;
 import me.ryanhamshire.GriefPrevention.Claim;
 import me.ryanhamshire.GriefPrevention.DataStore;
 import me.ryanhamshire.GriefPrevention.GriefPrevention;
+import org.bukkit.OfflinePlayer;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 
@@ -29,7 +31,10 @@ public class TeamDisband implements Listener {
             UUID teamMemberID = teamMember.getPlayer().getUniqueId();
             Vector<Claim> claims = gpDataStore.getPlayerData(teamMemberID).getClaims();
             for(Claim claim : claims){
-                claim.dropPermission(teamMemberID.toString());
+                for(TeamPlayer eachMember: teamMembers){
+                    claim.dropPermission(eachMember.toString());
+                    gpDataStore.saveClaim(claim);
+                }
             }
         }
 

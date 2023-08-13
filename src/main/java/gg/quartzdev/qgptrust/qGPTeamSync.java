@@ -1,10 +1,7 @@
 package gg.quartzdev.qgptrust;
 
 import gg.quartzdev.qgptrust.listeners.CreateClaim;
-import gg.quartzdev.qgptrust.listeners.betterteams.PlayerJoinTeam;
-import gg.quartzdev.qgptrust.listeners.betterteams.TeamDemotePlayer;
-import gg.quartzdev.qgptrust.listeners.betterteams.TeamPromotePlayer;
-import gg.quartzdev.qgptrust.listeners.betterteams.PlayerLeaveTeam;
+import gg.quartzdev.qgptrust.listeners.betterteams.*;
 import me.ryanhamshire.GriefPrevention.Claim;
 import me.ryanhamshire.GriefPrevention.ClaimPermission;
 import me.ryanhamshire.GriefPrevention.DataStore;
@@ -34,9 +31,10 @@ public final class qGPTeamSync extends JavaPlugin {
         getLogger().info("Hooking into BetterTeams");
         try {
             getServer().getPluginManager().registerEvents(new PlayerJoinTeam(), this);
+            getServer().getPluginManager().registerEvents(new PlayerLeaveTeam(), this);
             getServer().getPluginManager().registerEvents(new TeamPromotePlayer(), this);;
             getServer().getPluginManager().registerEvents(new TeamDemotePlayer(), this);
-            getServer().getPluginManager().registerEvents(new PlayerLeaveTeam(), this);
+            getServer().getPluginManager().registerEvents(new TeamDisband(), this);
         } catch(Exception e){
             getLogger().warning("Failed hooking into GriefPrevention: ");
             getLogger().warning(e.getMessage());
