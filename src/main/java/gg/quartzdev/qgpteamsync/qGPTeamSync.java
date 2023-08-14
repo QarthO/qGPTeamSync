@@ -2,6 +2,7 @@ package gg.quartzdev.qgpteamsync;
 
 import gg.quartzdev.qgpteamsync.listeners.CreateClaim;
 import gg.quartzdev.qgpteamsync.listeners.betterteams.*;
+import gg.quartzdev.qgpteamsync.util.Util;
 import me.ryanhamshire.GriefPrevention.Claim;
 import me.ryanhamshire.GriefPrevention.ClaimPermission;
 import me.ryanhamshire.GriefPrevention.DataStore;
@@ -15,17 +16,17 @@ public final class qGPTeamSync extends JavaPlugin {
         // Plugin startup logic
 
 //        bStats Metrics
-        getLogger().info("Enabling bStats Metrics");
+        Util.log("Enabling bStats Metrics");
         int pluginId = 19448;
         Metrics metrics = new Metrics(this, pluginId);
 
 //        register ClaimCreate event from grief prevention
-        getLogger().info("Hooking into GriefPrevention");
+        Util.log("Hooking into GriefPrevention");
         try {
             getServer().getPluginManager().registerEvents(new CreateClaim(), this);
         } catch(Exception e){
-            getLogger().warning("Failed hooking into GriefPrevention: ");
-            getLogger().warning(e.getMessage());
+            Util.warning("Failed hooking into GriefPrevention: ");
+            Util.warning(e.getMessage());
         }
 
         getLogger().info("Hooking into BetterTeams");
@@ -36,8 +37,8 @@ public final class qGPTeamSync extends JavaPlugin {
             getServer().getPluginManager().registerEvents(new TeamDemotePlayer(), this);
             getServer().getPluginManager().registerEvents(new TeamDisband(), this);
         } catch(Exception e){
-            getLogger().warning("Failed hooking into GriefPrevention: ");
-            getLogger().warning(e.getMessage());
+            Util.warning("Failed hooking into GriefPrevention: ");
+            Util.warning(e.getMessage());
         }
 
 

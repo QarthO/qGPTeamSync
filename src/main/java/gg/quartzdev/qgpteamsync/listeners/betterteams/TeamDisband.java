@@ -29,15 +29,17 @@ public class TeamDisband implements Listener {
         DataStore gpDataStore = GriefPrevention.instance.dataStore;
 //        loop through each team member
         for(TeamPlayer teamMember : teamMembers){
-
             UUID teamMemberID = teamMember.getPlayer().getUniqueId();
             Vector<Claim> claims = gpDataStore.getPlayerData(teamMemberID).getClaims();
+            Util.sendMessage(teamMember.getPlayer().getPlayer(), "<yellow>Removing <aqua>" + (teamMembers.size()-1) + " <yellow>player(s) from " + claims.size() + " claim(s)...");
             for(Claim claim : claims){
                 for(TeamPlayer eachMember: teamMembers){
+                    Util.sendMessage(teamMember.getPlayer().getPlayer(), "  <gray>- <aqua>" + eachMember.getPlayer().getName() + "<yellow> removed from claim " + claim.getID());
                     claim.dropPermission(eachMember.toString());
                     gpDataStore.saveClaim(claim);
                 }
             }
+            Util.sendMessage(teamMember.getPlayer().getPlayer(), "<green>Complete");
         }
 
 
