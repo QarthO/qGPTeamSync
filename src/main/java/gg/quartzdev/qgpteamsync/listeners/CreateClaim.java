@@ -3,6 +3,7 @@ package gg.quartzdev.qgpteamsync.listeners;
 import com.booksaw.betterTeams.PlayerRank;
 import com.booksaw.betterTeams.Team;
 import com.booksaw.betterTeams.TeamPlayer;
+import gg.quartzdev.qgpteamsync.util.Util;
 import me.ryanhamshire.GriefPrevention.*;
 import me.ryanhamshire.GriefPrevention.events.ClaimCreatedEvent;
 import org.bukkit.command.CommandSender;
@@ -11,6 +12,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 
 import java.util.List;
+import java.util.UUID;
 
 public class CreateClaim implements Listener {
 
@@ -30,21 +32,31 @@ public class CreateClaim implements Listener {
         if(team == null) return;
 
 //        Gets all members in the team
-        List<TeamPlayer> teammates = team.getStorage().getPlayerList();
+        List<TeamPlayer> teamMembers = team.getStorage().getPlayerList();
 
-        for(TeamPlayer teammate : teammates) {
+        Util.sendMessage(player, "<yellow>Adding <aqua>" + (teamMembers.size()-1) + " <yellow>player(s) to your new claim...");
+        for(TeamPlayer teamMember : teamMembers) {
+            Util.sendMessage(player, "  <gray>- <yellow>Added <aqua>" + teamMember.getPlayer().getName());
+            UUID teamMemberID = teamMember.getPlayer().getUniqueId();
+//            Prevents a team member from trusting themself to their own claim
+            if(teamMemberID.equals(player.getUniqueId())) continue;
 //            gets the rank of each teammate
-            PlayerRank rank = teammate.getRank();
+            PlayerRank rank = teamMember.getRank();
 
 //            if they're an admin/owner they become a manager
-            if(rank.equals(PlayerRank.ADMIN) || rank.equals(PlayerRank.OWNER)) newClaim.setPermission(teammate.getPlayer().getUniqueId().toString(), ClaimPermission.Manage);
+            if(rank.equals(PlayerRank.ADMIN) || rank.equals(PlayerRank.OWNER)) {
+                newClaim.setPermission(teamMemberID.toString(), ClaimPermission.Manage);
+            }
 //            for every other rank, they become a builder (currently only other teams rank is DEFAULT)
-            else newClaim.setPermission(teammate.getPlayer().getUniqueId().toString(), ClaimPermission.Build);
+            else {
+                newClaim.setPermission(teamMemberID.toString(), ClaimPermission.Build);
+            }
         }
 
 //        Saves claim
         DataStore gpDataStore = GriefPrevention.instance.dataStore;
         gpDataStore.saveClaim(newClaim);
+        Util.sendMessage(player, "<green>Complete");
 
 
 

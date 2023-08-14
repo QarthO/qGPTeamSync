@@ -34,6 +34,7 @@ public class TeamDisband implements Listener {
             Util.sendMessage(teamMember.getPlayer().getPlayer(), "<yellow>Removing <aqua>" + (teamMembers.size()-1) + " <yellow>player(s) from " + claims.size() + " claim(s)...");
             for(Claim claim : claims){
                 for(TeamPlayer eachMember: teamMembers){
+                    if(eachMember.equals(teamMember)) return;
                     Util.sendMessage(teamMember.getPlayer().getPlayer(), "  <gray>- <aqua>" + eachMember.getPlayer().getName() + "<yellow> removed from claim " + claim.getID());
                     claim.dropPermission(eachMember.toString());
                     gpDataStore.saveClaim(claim);
