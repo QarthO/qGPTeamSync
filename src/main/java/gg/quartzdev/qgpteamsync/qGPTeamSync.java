@@ -29,7 +29,7 @@ public final class qGPTeamSync extends JavaPlugin {
             Util.warning(e.getMessage());
         }
 
-        getLogger().info("Hooking into BetterTeams");
+        Util.log("Hooking into BetterTeams");
         try {
             getServer().getPluginManager().registerEvents(new PlayerJoinTeam(), this);
             getServer().getPluginManager().registerEvents(new PlayerLeaveTeam(), this);

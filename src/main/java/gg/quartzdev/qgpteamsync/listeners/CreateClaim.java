@@ -34,9 +34,8 @@ public class CreateClaim implements Listener {
 //        Gets all members in the team
         List<TeamPlayer> teamMembers = team.getStorage().getPlayerList();
 
-        Util.sendMessage(player, "<yellow>Adding <aqua>" + (teamMembers.size()-1) + " <yellow>player(s) to your new claim...");
+//        Util.sendMessage(player, "<yellow>Adding <aqua>" + (teamMembers.size()-1) + " <yellow>player(s) to your new claim...");
         for(TeamPlayer teamMember : teamMembers) {
-            Util.sendMessage(player, "  <gray>- <yellow>Added <aqua>" + teamMember.getPlayer().getName());
             UUID teamMemberID = teamMember.getPlayer().getUniqueId();
 //            Prevents a team member from trusting themself to their own claim
             if(teamMemberID.equals(player.getUniqueId())) continue;
@@ -51,12 +50,13 @@ public class CreateClaim implements Listener {
             else {
                 newClaim.setPermission(teamMemberID.toString(), ClaimPermission.Build);
             }
+//            Util.sendMessage(player, "  <gray>- <yellow>Added <aqua>" + teamMember.getPlayer().getName());
         }
 
 //        Saves claim
         DataStore gpDataStore = GriefPrevention.instance.dataStore;
         gpDataStore.saveClaim(newClaim);
-        Util.sendMessage(player, "<green>Complete");
+//        Util.sendMessage(player, "<green>Complete");
 
 
 
